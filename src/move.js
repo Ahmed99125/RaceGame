@@ -107,13 +107,29 @@ class Move extends UI {
     }
   }
 
+  moveCarMobile() {
+    if (this.playStatus) {
+      this.car.style.left = `${event.touches[0].clientX - document.body.clientWidth/2 + this.road.clientWidth/2 - this.car.clientWidth/2}px`;
+
+      const x = this.car.style.left.split('p')[0],
+      maxPos = this.road.clientWidth - this.car.clientWidth,
+      minPos = this.road.clientLeft;
+      
+      if (x <= minPos) {
+        this.car.style.left = `${minPos}px`;
+      } else if (x >= maxPos - minPos) {
+        this.car.style.left = `${maxPos - minPos}px`;
+      } 
+    }
+  }
+
   moveCarEvent() {
     this.road.addEventListener('mousemove', e => {
       this.moveCar();
     });
     
-    this.road.addEventListener('touchmove', e => {
-      this.moveCar();
+    this.car.addEventListener('touchmove', e => {
+      this.moveCarMobile();
     });
   }
   
