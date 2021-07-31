@@ -200,6 +200,8 @@ class Move extends UI {
     quitBtn = document.querySelector('.gameover-quit');
 
     playAgainBtn.addEventListener('click', () => {
+      this.botRecursive = 3000;
+      this.speed = 3000;
       this.removeAll('bot');
       resume();
       this.score.textContent = 0;
